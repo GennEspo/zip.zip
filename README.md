@@ -6,7 +6,7 @@ Elaborato 1: .zip
 
 # zip.zip  
 Autore: Gennaro Esposito  
-🔗 [https://gennespo.github.io/zip.zip/](https://gennespo.github.io/zip.zip/)
+🔗 [zip.zip/](https://gennespo.github.io/zip.zip/)
 
 ## Introduzione e tema
 
