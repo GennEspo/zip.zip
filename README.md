@@ -2,7 +2,7 @@ SUPSI 2025
 Corso d’interaction design, CV428.01  
 Docenti: A. Gysin, G. Profeta  
 
-Elaborato 1: .zip
+Elaborato 2: .zip
 
 # zip.zip  
 Autore: Gennaro Esposito  
