@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SUPSI 2025  
 Corso d’interaction design, CV428.01  
 Docenti: A. Gysin, G. Profeta  
@@ -78,3 +79,6 @@ Può essere utilizzato in contesti didattici o come sito divulgativo per introdu
 <img src="doc/screen_intro.png" width="500" alt="Decompressione iniziale" />  
 <img src="doc/screen_folder.png" width="500" alt="Cartella ZIP aperta" />  
 <img src="doc/screen_deflate.png" width="500" alt="Simulatore Deflate" />
+=======
+Sito web dedicato all'estensione zip link: https://gennespo.github.io/zip.zip/
+>>>>>>> e5d400259b92de132a68ff0ce955bbc18183a2f1
