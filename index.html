@@ -412,16 +412,18 @@
     <li>Una <strong>Central Directory</strong> a fine archivio che funge da indice per l’intero contenuto</li>
   </ul>
   <p>Grazie a questa struttura, è possibile aprire e leggere anche solo una parte dell’archivio senza decomprimerlo interamente. Inoltre, ZIP è progettato per essere retrocompatibile: versioni nuove del formato possono contenere metadati o sezioni extra che i software più vecchi semplicemente ignorano.</p>
-
-  <div style="margin-top:2rem;">
-    <h3>Simulatore Interattivo ZIP</h3>
-    <p>Seleziona un file di testo dal tuo computer e osserva una simulazione del funzionamento di DEFLATE. Le ripetizioni saranno sostituite con simboli codificati, e verrà mostrata la stima della riduzione della dimensione.</p>
-    <input type="file" id="zipSimulatorInput" accept=".txt" />
-    <pre id="originalContent" style="margin-top:1rem; background:#111; padding:1rem;"></pre>
-    <pre id="compressedContent" style="margin-top:1rem; background:#111; padding:1rem;"></pre>
-  </div>
 `
   },
+
+  {
+  title: 'simulatore.zip',
+  content: `
+    <h2>Simulatore Interattivo DEFLATE</h2>
+    <p>Scrivi nel box qui sotto per simulare in tempo reale una compressione semplificata stile DEFLATE. Le ripetizioni verranno sostituite con token simbolici.</p>
+    <textarea id="deflateInput" rows="6" style="margin-top:1rem;width:100%; background:#111; color:#fff; border:1px solid #444; padding:1rem; font-family:'IBM Plex Mono', monospace;"></textarea>
+    <pre id="deflateCompressed" style="margin-top:1rem; background:#111; padding:1rem; border:1px solid #333;">📦 Compresso (semplificato):</pre>
+  `
+},
  
   {
     title: 'curiosità.zip',
@@ -549,6 +551,27 @@ children.forEach((el, i) => {
     function startDecompressionAnimation() {
 
       document.addEventListener('change', (event) => {
+        document.addEventListener('input', (event) => {
+  if (event.target.id === 'deflateInput') {
+    const content = event.target.value;
+    let compressed = content;
+
+    const patterns = [...new Set(content.match(/\b\w{4,}\b/g))]; // parole di almeno 4 lettere
+    patterns.forEach((word, i) => {
+      const token = `§${i}§`;
+      compressed = compressed.split(word).join(token);
+    });
+
+    const reduction = content.length > 0
+      ? Math.round(((content.length - compressed.length) / content.length) * 100)
+      : 0;
+
+    const display = document.getElementById('deflateCompressed');
+    display.textContent =
+      '📦 Compresso (semplificato):\n' + compressed +
+      '\n\n🧮 Riduzione stimata: ' + reduction + '%';
+  }
+});
   if (event.target.id === 'zipSimulatorInput') {
     const file = event.target.files[0];
     if (file) {
@@ -557,7 +580,6 @@ children.forEach((el, i) => {
         const content = e.target.result;
         document.getElementById('originalContent').textContent = '📝 Testo Originale:\n' + content;
 
-        // Simulazione compressione (semplificata)
         let compressed = content;
         const patterns = [...new Set(content.match(/\b\w{4,}\b/g))]; // parole di almeno 4 lettere
         patterns.forEach((word, i) => {
